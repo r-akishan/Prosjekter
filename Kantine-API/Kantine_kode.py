@@ -62,9 +62,17 @@ def rimelige_rett(maks_pris):                  # Lager en funksjon for å finne 
                 matpris.append(budsjett["rett"])  # Legger inn rettene som er innenfor budsjettet mitt
     return matpris                             # Returnerer rettene
 
+def kafe_meny(kafe_id):
+    """Returnerer menyen på kafeen"""
+    kafe = hent_kafe(kafe_id)
+    if kafe is None:
+        return []
+    return kafe["meny"]
+
 if __name__ == "__main__":
     print("Antall kafeer:", len(KAFEER))
     print("Optimisten:", hent_kafe("optimisten"))
     print("Finnes ikke:", hent_kafe("finnes-ikke"))
     print("Vegetar Optimisten:", vegetarretter("optimisten"))
     print("Rimelige rett:", rimelige_rett(100))
+    print("Kafé meny:", kafe_meny("optimisten"))

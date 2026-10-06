@@ -1,5 +1,5 @@
 from fastapi import FastAPI, HTTPException                  # Importerer et fast API
-from Kantine_kode import KAFEER, hent_kafe, vegetarretter, rimelige_rett
+from Kantine_kode import KAFEER, hent_kafe, vegetarretter, rimelige_rett, kafe_meny
                                                             # Setter opp et minimalt API
 app = FastAPI()
 
@@ -30,3 +30,13 @@ def billig_rett(maks_pris: int):                                                
     if kafe_rimelig == []:
         return f"Dessverre ingen retter som når budsjettet ditt på {maks_pris}kr!" # Budsjettet er for lavt
     return kafe_rimelig
+
+@app.get("/kafeer/{kafe_id}/meny")
+def menyen(kafe_id):
+    kafe_resturant = hent_kafe(kafe_id)
+    if kafe_resturant is None:
+        raise HTTPException(status_code = 404, detail = "Kafé ikke funnet!")
+    kafe_menu = kafe_meny(kafe_id)
+    if kafe_menu == []:
+        return f"Menyen er dessverre ikke tilgjengelig hos {kafe_id}!"
+    return kafe_menu
