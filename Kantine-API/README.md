@@ -28,7 +28,7 @@ Dette er en demo-versjon av API for kafeene på UiS (Optimisten, Sentralen og Hu
 
 | `/kafeer/{maks_pris}/pris` | retter til en gitt pris eller lavere  |
 
-
+| `/kafeer/{kafe_id}/meny` | meny for en kafe  |
 
 **Filene i prosjektet:**
 
